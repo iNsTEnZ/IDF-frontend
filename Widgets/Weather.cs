@@ -12,63 +12,82 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace WeatherApp
+namespace Widgets
 {
-    public partial class Wetaher : Form
+    public partial class Weather : Form
     {
-        private string temperature;
-        private string condition;
-        private string humidity;
-        private string windspeed;
-        private string city;
-        private string region;
-        private string country;
-        private string code = "3200";
-        private string local;
+        private Location location;
+        private Condition condition;
+        private Forecast[] forecast = new Forecast[6];
         private string lastUpdate;
-        private string[] next_day   = new string[10];
-        private string[] next_cond  = new string[10];
-        private string[] next_condt = new string[10];
-        private string[] next_high  = new string[10];
-        private string[] next_low   = new string[10];
 
-        public Wetaher()
+        internal class Location
+        {
+            public string city { get; set; }
+            public string country { get; set; }
+        }
+
+        internal class Condition
+        {
+            public string code { get; set; }
+            //public string date { get; set; }
+            public string temp { get; set; }
+            public string text { get; set; }
+        }
+
+        internal class Forecast
+        {
+            public string code { get; set; }
+            public string date { get; set; }
+            public string day { get; set; }
+            public string high { get; set; }
+            public string low { get; set; }
+            public string text { get; set; }
+        }
+
+        public Weather()
         {
             InitializeComponent();
-            getWeather();
-            lblTemperture.Text = temperature;
-            lblUnit.Text = string.Format("\u00B0") + "F";
-            lblToday.Text = next_day[0];
-            lblCity.Text = city + ", " + region;
-            lblCountry.Text = country;
-            /*lblDay1.Text = next_day[1];
-            lblDay2.Text = next_day[2];
-            lblDay3.Text = next_day[3];
-            lblDay4.Text = next_day[4];
-            lblDay5.Text = next_day[5];
-            lblHigh1.Text = next_high[1] + string.Format("\u00B0") + "F";
-            lblbHigh2.Text = next_high[2] + string.Format("\u00B0") + "F";
-            lblHigh3.Text = next_high[3] + string.Format("\u00B0") + "F";
-            lblHigh4.Text = next_high[4] + string.Format("\u00B0") + "F";
-            lblHigh5.Text = next_high[5] + string.Format("\u00B0") + "F";
-            lblLow1.Text = next_low[1] + string.Format("\u00B0") + "F";
-            lblLow2.Text = next_low[2] + string.Format("\u00B0") + "F";
-            lblLow3.Text = next_low[3] + string.Format("\u00B0") + "F";
-            lblLow4.Text = next_low[4] + string.Format("\u00B0") + "F";
-            lblLow5.Text = next_low[5] + string.Format("\u00B0") + "F";
+            btnGetWeather_Click(null, null);
+        }
+
+        private void updateForm()
+        {
+            lblUpdate.Text = this.lastUpdate;
+            lblTemp.Text = this.condition.temp;
+            lblToday.Text = DateTime.Now.DayOfWeek.ToString();
+            lblLoc.Text = this.location.city + "," + this.location.country;
+            lblText.Text = this.condition.text;
+            lblDay1.Text = this.forecast[1].day;
+            lblDay2.Text = this.forecast[2].day;
+            lblDay3.Text = this.forecast[3].day;
+            lblDay4.Text = this.forecast[4].day;
+            lblDay5.Text = this.forecast[5].day;
+            lblHigh1.Text = this.forecast[1].high;
+            lblHigh2.Text = this.forecast[2].high;
+            lblHigh3.Text = this.forecast[3].high;
+            lblHigh4.Text = this.forecast[4].high;
+            lblHigh5.Text = this.forecast[5].high;
+            lblLow1.Text = this.forecast[1].low;
+            lblLow2.Text = this.forecast[2].low;
+            lblLow3.Text = this.forecast[3].low;
+            lblLow4.Text = this.forecast[4].low;
+            lblLow5.Text = this.forecast[5].low;
             setIcons();
-            setIcon();*/
+            setIcon();
         }
 
         // Sets the images for the next 5 days weather forecast
         private void setIcons()
         {
-            pbForecast1.Image = Image.FromFile(getString(next_cond[1]));
-            pbForecast2.Image = Image.FromFile(getString(next_cond[2]));
-            pbForecast3.Image = Image.FromFile(getString(next_cond[3]));
-            pbForecast4.Image = Image.FromFile(getString(next_cond[4]));
-            pbForecast5.Image = Image.FromFile(getString(next_cond[5]));
+            pbForecast1.Image = Image.FromFile(getString(this.forecast[1].code));
+            pbForecast2.Image = Image.FromFile(getString(this.forecast[2].code));
+            pbForecast3.Image = Image.FromFile(getString(this.forecast[3].code));
+            pbForecast4.Image = Image.FromFile(getString(this.forecast[4].code));
+            pbForecast5.Image = Image.FromFile(getString(this.forecast[5].code));
         }
 
         // Creates and returns a path to the requiered image
@@ -87,32 +106,36 @@ namespace WeatherApp
         // Sets the image of the current weather condition
         private void setIcon()
         {
-            if (code.Equals("3200"))
+            if (this.condition.code.Equals("3200"))
             {
                 pbCondition.Image = Image.FromFile("../Pics/na.png");
             }
             else
             {
-                string st = "../Pics/" + code + ".png";
+                string st = "../Pics/" + this.condition.code + ".png";
                 pbCondition.Image = Image.FromFile(st);
             }
         }
 
         // Parses the jason objected recieved and updates the properties
-        private void getWeather()
+        private void getWeather(string json)
         {
-            
+            JObject root = JObject.Parse(json);
+            this.location = root["query"]["results"]["channel"]["location"].ToObject<Location>();
+            this.condition = root["query"]["results"]["channel"]["item"]["condition"].ToObject<Condition>();
+            this.forecast = root["query"]["results"]["channel"]["item"]["forecast"].ToObject<Forecast[]>();
+            this.lastUpdate = DateTime.Now.ToString();
+            this.updateForm();
         }
 
         // Gets the weather and forecast for the wanted location
         private void btnGetWeather_Click(object sender, EventArgs e)
         {
-            string response = SendRequest("http://localhost:8888/api/weather/?location=" + txtLocation.Text);
+            string response = SendRequest("http://localhost:8888/api/weather/?location=" + txtLocation.Text + "&u=" + lblUnit.Text);
 
             if (response != null)
             {
-                MessageBox.Show(response, "Hey there!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                getWeather();
+                getWeather(response);
             }
         }
 
@@ -137,6 +160,20 @@ namespace WeatherApp
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void lblUnit_Click(object sender, EventArgs e)
+        {
+            if (lblUnit.Text == "C")
+            {
+                lblUnit.Text = "F";
+                btnGetWeather.PerformClick();
+            }
+            else
+            {
+                lblUnit.Text = "C";
+                btnGetWeather.PerformClick();
+            }
         }
     }
 }

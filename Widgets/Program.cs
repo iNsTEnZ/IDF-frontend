@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WeatherApp
+namespace Widgets
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace WeatherApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Wetaher());
+            Application.Run(new Weather());
         }
     }
 }
