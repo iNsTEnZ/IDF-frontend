@@ -112,7 +112,7 @@ namespace Widgets
             this.lblTemp.BackColor = System.Drawing.Color.Transparent;
             this.lblTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTemp.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblTemp.Location = new System.Drawing.Point(295, 86);
+            this.lblTemp.Location = new System.Drawing.Point(287, 86);
             this.lblTemp.Name = "lblTemp";
             this.lblTemp.Size = new System.Drawing.Size(107, 76);
             this.lblTemp.TabIndex = 6;
@@ -122,11 +122,11 @@ namespace Widgets
             // 
             this.lblLoc.AutoSize = true;
             this.lblLoc.BackColor = System.Drawing.Color.Transparent;
-            this.lblLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoc.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblLoc.Location = new System.Drawing.Point(419, 173);
+            this.lblLoc.Location = new System.Drawing.Point(394, 180);
             this.lblLoc.Name = "lblLoc";
-            this.lblLoc.Size = new System.Drawing.Size(125, 31);
+            this.lblLoc.Size = new System.Drawing.Size(102, 26);
             this.lblLoc.TabIndex = 7;
             this.lblLoc.Text = "Location";
             // 
@@ -136,11 +136,11 @@ namespace Widgets
             this.lblToday.BackColor = System.Drawing.Color.Transparent;
             this.lblToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.lblToday.ForeColor = System.Drawing.Color.Silver;
-            this.lblToday.Location = new System.Drawing.Point(304, 180);
+            this.lblToday.Location = new System.Drawing.Point(296, 180);
             this.lblToday.Name = "lblToday";
-            this.lblToday.Size = new System.Drawing.Size(63, 24);
+            this.lblToday.Size = new System.Drawing.Size(55, 24);
             this.lblToday.TabIndex = 14;
-            this.lblToday.Text = "Today";
+            this.lblToday.Text = "today";
             // 
             // lblUnit
             // 
@@ -148,7 +148,7 @@ namespace Widgets
             this.lblUnit.BackColor = System.Drawing.Color.Transparent;
             this.lblUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnit.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblUnit.Location = new System.Drawing.Point(385, 122);
+            this.lblUnit.Location = new System.Drawing.Point(374, 122);
             this.lblUnit.Margin = new System.Windows.Forms.Padding(0);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(34, 31);
@@ -411,6 +411,8 @@ namespace Widgets
             this.txtLocation.Size = new System.Drawing.Size(100, 20);
             this.txtLocation.TabIndex = 42;
             this.txtLocation.Text = "Ashdod,Israel";
+            this.txtLocation.TextChanged += new System.EventHandler(this.txtLocation_TextChanged);
+            this.txtLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLocation_KeyDown);
             // 
             // lblText
             // 
@@ -418,7 +420,7 @@ namespace Widgets
             this.lblText.BackColor = System.Drawing.Color.Transparent;
             this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.lblText.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblText.Location = new System.Drawing.Point(421, 129);
+            this.lblText.Location = new System.Drawing.Point(405, 129);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(96, 24);
             this.lblText.TabIndex = 43;
