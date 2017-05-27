@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -25,11 +27,10 @@ namespace Widgets
         internal class VolumeInfo
         {
             public string title { get; set; }
-            public string authors { get; set; }
+            public object authors { get; set; }
             public string publisher { get; set; }
             public string publishedDate { get; set; }
             public string description { get; set; }
-            public object industryIdentifiers { get; set; }
             public string pageCount { get; set; }
             public string categories { get; set; }
             public float  averageRating { get; set; }
@@ -37,9 +38,6 @@ namespace Widgets
             public string maturityRating { get; set; }
             public ImageLinks imageLinks { get; set; }
             public string language { get; set; }
-            //public string previewLink { get; set; }
-            //public string infoLink { get; set; }
-            //public string canonicalVolumeLink { get; set; }
             public string subtitle { get; set; }
         }
 
@@ -73,7 +71,7 @@ namespace Widgets
             lblAuthor.Visible    = toShow;
             lblTitle.Visible     = toShow;
             lblSubtitle.Visible  = toShow;
-            lblDesc.Visible      = toShow;
+            txtDesc.Visible      = toShow;
             lblPublisher.Visible = toShow;
             lblPages.Visible     = toShow;
             lblCategory.Visible  = toShow;
@@ -126,34 +124,55 @@ namespace Widgets
             }
             else
             {
-                MessageBox.Show("Error! Couldn't find the desired location.");
+                MessageBox.Show("No results were found");
                 txtBookName.Text = "";
             }
         }
 
         private void searchResults(int resNum)
         {
+            txtDesc.Text      = "Description:"+ Environment.NewLine + this.results[resNum].volumeInfo.description;
             lblDate.Text      = "Published on: " + this.results[resNum].volumeInfo.publishedDate;
             lblPages.Text     = "Pages: " + this.results[resNum].volumeInfo.pageCount;
             lblTitle.Text     = this.results[resNum].volumeInfo.title;
-            lblAuthor.Text    = "Author/s: " + this.results[resNum].volumeInfo.authors;
             lblResNum.Text    = "Result Number: " + (resNum + 1) + " out of" + this.results.Length;
             lblCategory.Text  = "Category: " + this.results[resNum].volumeInfo.categories;
             lblSubtitle.Text  = this.results[resNum].volumeInfo.subtitle;
             lblLanguage.Text  = "Language: " + this.results[resNum].volumeInfo.language;
             lblRateCount.Text = "(" + this.results[resNum].volumeInfo.ratingsCount + ")";
             lblPublisher.Text = "Publisher: " + this.results[resNum].volumeInfo.publisher;
-
-            // Parse description text to fit the lable size
-            string temp = this.results[resNum].volumeInfo.description.Replace(". ", "." + System.Environment.NewLine);
-            lblDesc.Text      = "Description:\n" + temp;
-
+            
             // Loads pictures to picture boxes
             pbFront.Load(this.results[resNum].volumeInfo.imageLinks.thumbnail);
             setRating(this.results[resNum].volumeInfo.averageRating);
 
+            // Set the buttons 
+            setBrowsing(resNum);
+
+            // Set authors
+            getAuthors(resNum);
+
             // Make data visible
             show(true);
+        }
+
+        private void setBrowsing(int resNum)
+        {
+            if (resNum == 0)
+            {
+                btnBack.Enabled = false;
+                btnNext.Enabled = true;
+            }
+            else if (resNum == this.results.Length - 1)
+            {
+                btnNext.Enabled = false;
+                btnBack.Enabled = true;
+            }
+            else
+            {
+                btnBack.Enabled = true;
+                btnNext.Enabled = true;
+            }
         }
 
         private void setRating(float rate)
@@ -169,7 +188,7 @@ namespace Widgets
                 }
             }
 
-            if (fraction < 0.5)
+            if (fraction < 0.5 && fraction > 0)
             {
                 RATES[whole].Image = Image.FromFile("../Stars/1.png");
             }
@@ -186,6 +205,38 @@ namespace Widgets
             {
                 RATES[i].Image = Image.FromFile("../Stars/0.png");
             }
+        }
+
+        private void getAuthors(int resNum)
+        {
+            if (this.results[resNum].volumeInfo.authors != null)
+            {
+                Type valueType = this.results[resNum].volumeInfo.authors.GetType();
+
+                if (valueType.Name == "JArray")
+                {
+                    var authors = ((IEnumerable)this.results[resNum].volumeInfo.authors).Cast<object>()
+                               .Select(x => x == null ? x : x.ToString()).ToArray();
+                    string concatenated = string.Join(",", authors.Cast<string>().ToArray<string>());
+                    lblAuthor.Text = "Author/s: " + concatenated;
+                }
+            }
+            else
+            {
+                lblAuthor.Text = "Author/s: " + this.results[resNum].volumeInfo.authors;
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int currRes = Int32.Parse(Regex.Match(lblResNum.Text, @"\d+").Value);
+            searchResults(currRes);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            int currRes = Int32.Parse(Regex.Match(lblResNum.Text, @"\d+").Value);
+            searchResults(currRes - 2);
         }
     }
 }

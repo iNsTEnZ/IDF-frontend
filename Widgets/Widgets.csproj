@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\books.png" />
     <None Include="Resources\refresh-button-png-image-20227.png" />
     <None Include="refresh_page.png" />
     <None Include="Background.jpg" />
