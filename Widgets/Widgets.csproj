@@ -56,6 +56,9 @@
     <Compile Include="Books.Designer.cs">
       <DependentUpon>Books.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connect.cs" />
+    <Compile Include="IJson.cs" />
+    <Compile Include="MultiFormContext.cs" />
     <Compile Include="Weather.cs">
       <SubType>Form</SubType>
     </Compile>

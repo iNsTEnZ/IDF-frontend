@@ -14,16 +14,18 @@ using System.Windows.Forms;
 
 namespace Widgets
 {
-    public partial class Books : Form
+    public partial class Books : Form, IJson
     {
         private Items[] results;
         private static PictureBox[] RATES = new PictureBox[5];
 
+        // Represnts a search results
         internal class Items
         {
             public VolumeInfo volumeInfo { get; set; }
         }
 
+        // Represnts a book. Holds it's deatils.
         internal class VolumeInfo
         {
             public string title { get; set; }
@@ -41,6 +43,7 @@ namespace Widgets
             public string subtitle { get; set; }
         }
 
+        // Holds the book reslt's image link
         public class ImageLinks
         {
             public string smallThumbnail { get; set; }
@@ -60,6 +63,7 @@ namespace Widgets
             show(false);
         }
 
+        // Hides or displays the details on the form
         private void show(bool toShow)
         {
             for (int i = 0; i < 5; i++)
@@ -84,35 +88,19 @@ namespace Widgets
             btnBack.Visible      = toShow;
         }
 
+        // Sends a request to the server and returns its response
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string response = SendRequest("http://localhost:8888/api/books/?bookName=" + txtBookName.Text);
+            string response = Connect.SendRequest("http://localhost:8888/api/books/?bookName=" + txtBookName.Text);
 
             if (response != null)
             {
-                searchBook(response);
-            }
-        }
-
-        // Send a request to the server to retrieve weather and forecast for a certain location
-        private string SendRequest(string url)
-        {
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    return client.DownloadString(new Uri(url));
-                }
-            }
-            catch (WebException ex)
-            {
-                MessageBox.Show("Error while receiving data from the server:\n" + ex.Message, "Something broke.. :(", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return null;
+                parse(response);
             }
         }
 
         // Parses the jason objected recieved and updates the properties
-        private void searchBook(string json)
+        public void parse(string json)
         {
             JObject root = JObject.Parse(json);
 
@@ -129,6 +117,7 @@ namespace Widgets
             }
         }
 
+        // Displays the search result number resNum
         private void searchResults(int resNum)
         {
             txtDesc.Text      = "Description:"+ Environment.NewLine + this.results[resNum].volumeInfo.description;
@@ -141,7 +130,7 @@ namespace Widgets
             lblLanguage.Text  = "Language: " + this.results[resNum].volumeInfo.language;
             lblRateCount.Text = "(" + this.results[resNum].volumeInfo.ratingsCount + ")";
             lblPublisher.Text = "Publisher: " + this.results[resNum].volumeInfo.publisher;
-            
+
             // Loads pictures to picture boxes
             pbFront.Load(this.results[resNum].volumeInfo.imageLinks.thumbnail);
             setRating(this.results[resNum].volumeInfo.averageRating);
@@ -156,13 +145,17 @@ namespace Widgets
             show(true);
         }
 
+        // Disables and enables the browsing buttons according to the current search result number
         private void setBrowsing(int resNum)
         {
+            // If its the first result, disables the back button
             if (resNum == 0)
             {
                 btnBack.Enabled = false;
                 btnNext.Enabled = true;
             }
+
+            // If its last result, disables the next button
             else if (resNum == this.results.Length - 1)
             {
                 btnNext.Enabled = false;
@@ -175,13 +168,16 @@ namespace Widgets
             }
         }
 
+        // Sets the stars' pictures according to the rate of the book
         private void setRating(float rate)
         {
             int whole = (int)rate;
             float fraction = rate - whole;
 
+            // Checks if it has any whole stars
             if (whole > 0)
             {
+                // Sets whole star image
                 for (int i = 0; i < whole; i++)
                 {
                     RATES[i].Image = Image.FromFile("../Stars/4.png");
@@ -206,13 +202,15 @@ namespace Widgets
                 RATES[i].Image = Image.FromFile("../Stars/0.png");
             }
         }
-
+        // Displays the authors
         private void getAuthors(int resNum)
         {
+            // Checks if there is a known author
             if (this.results[resNum].volumeInfo.authors != null)
             {
                 Type valueType = this.results[resNum].volumeInfo.authors.GetType();
 
+                // Checks if there are a number of authors
                 if (valueType.Name == "JArray")
                 {
                     var authors = ((IEnumerable)this.results[resNum].volumeInfo.authors).Cast<object>()
@@ -227,12 +225,14 @@ namespace Widgets
             }
         }
 
+        // Gets the next search result 
         private void btnNext_Click(object sender, EventArgs e)
         {
             int currRes = Int32.Parse(Regex.Match(lblResNum.Text, @"\d+").Value);
             searchResults(currRes);
         }
 
+        // Gets the previous search result
         private void btnBack_Click(object sender, EventArgs e)
         {
             int currRes = Int32.Parse(Regex.Match(lblResNum.Text, @"\d+").Value);

@@ -132,28 +132,11 @@ namespace Widgets
         // Gets the weather and forecast for the wanted location
         private void btnGetWeather_Click(object sender, EventArgs e)
         {
-            string response = SendRequest("http://localhost:8888/api/weather/?location=" + txtLocation.Text + "&u=" + lblUnit.Text);
+            string response = Connect.SendRequest("http://localhost:8888/api/weather/?location=" + txtLocation.Text + "&u=" + lblUnit.Text);
 
             if (response != null)
             {
                 getWeather(response);
-            }
-        }
-
-        // Send a request to the server to retrieve weather and forecast for a certain location
-        private string SendRequest(string url)
-        {
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    return client.DownloadString(new Uri(url));
-                }
-            }
-            catch (WebException ex)
-            {
-                MessageBox.Show("Error while receiving data from the server:\n" + ex.Message, "Something broke.. :(", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return null;
             }
         }
 

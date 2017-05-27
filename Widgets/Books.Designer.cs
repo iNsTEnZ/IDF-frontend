@@ -91,7 +91,7 @@
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle.Location = new System.Drawing.Point(163, 32);
+            this.lblTitle.Location = new System.Drawing.Point(160, 27);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(66, 29);
             this.lblTitle.TabIndex = 3;
@@ -102,7 +102,7 @@
             this.lblAuthor.AutoSize = true;
             this.lblAuthor.BackColor = System.Drawing.Color.Transparent;
             this.lblAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblAuthor.Location = new System.Drawing.Point(163, 63);
+            this.lblAuthor.Location = new System.Drawing.Point(163, 72);
             this.lblAuthor.Name = "lblAuthor";
             this.lblAuthor.Size = new System.Drawing.Size(85, 24);
             this.lblAuthor.TabIndex = 4;
@@ -113,7 +113,7 @@
             this.lblRating.AutoSize = true;
             this.lblRating.BackColor = System.Drawing.Color.Transparent;
             this.lblRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblRating.Location = new System.Drawing.Point(164, 89);
+            this.lblRating.Location = new System.Drawing.Point(164, 95);
             this.lblRating.Name = "lblRating";
             this.lblRating.Size = new System.Drawing.Size(61, 24);
             this.lblRating.TabIndex = 5;
@@ -122,7 +122,7 @@
             // pbStar1
             // 
             this.pbStar1.BackColor = System.Drawing.Color.Transparent;
-            this.pbStar1.Location = new System.Drawing.Point(231, 93);
+            this.pbStar1.Location = new System.Drawing.Point(231, 99);
             this.pbStar1.Name = "pbStar1";
             this.pbStar1.Size = new System.Drawing.Size(24, 20);
             this.pbStar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -132,7 +132,7 @@
             // pbStar2
             // 
             this.pbStar2.BackColor = System.Drawing.Color.Transparent;
-            this.pbStar2.Location = new System.Drawing.Point(261, 93);
+            this.pbStar2.Location = new System.Drawing.Point(261, 99);
             this.pbStar2.Name = "pbStar2";
             this.pbStar2.Size = new System.Drawing.Size(24, 20);
             this.pbStar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -142,7 +142,7 @@
             // pbStar3
             // 
             this.pbStar3.BackColor = System.Drawing.Color.Transparent;
-            this.pbStar3.Location = new System.Drawing.Point(291, 93);
+            this.pbStar3.Location = new System.Drawing.Point(291, 99);
             this.pbStar3.Name = "pbStar3";
             this.pbStar3.Size = new System.Drawing.Size(24, 20);
             this.pbStar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -152,7 +152,7 @@
             // pbStar4
             // 
             this.pbStar4.BackColor = System.Drawing.Color.Transparent;
-            this.pbStar4.Location = new System.Drawing.Point(321, 93);
+            this.pbStar4.Location = new System.Drawing.Point(321, 99);
             this.pbStar4.Name = "pbStar4";
             this.pbStar4.Size = new System.Drawing.Size(24, 20);
             this.pbStar4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -162,7 +162,7 @@
             // pbStar5
             // 
             this.pbStar5.BackColor = System.Drawing.Color.Transparent;
-            this.pbStar5.Location = new System.Drawing.Point(351, 93);
+            this.pbStar5.Location = new System.Drawing.Point(351, 99);
             this.pbStar5.Name = "pbStar5";
             this.pbStar5.Size = new System.Drawing.Size(24, 20);
             this.pbStar5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -174,7 +174,7 @@
             this.lblCategory.AutoSize = true;
             this.lblCategory.BackColor = System.Drawing.Color.Transparent;
             this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblCategory.Location = new System.Drawing.Point(163, 119);
+            this.lblCategory.Location = new System.Drawing.Point(162, 127);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(77, 20);
             this.lblCategory.TabIndex = 12;
@@ -184,7 +184,7 @@
             // 
             this.lblRateCount.AutoSize = true;
             this.lblRateCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblRateCount.Location = new System.Drawing.Point(381, 100);
+            this.lblRateCount.Location = new System.Drawing.Point(381, 103);
             this.lblRateCount.Name = "lblRateCount";
             this.lblRateCount.Size = new System.Drawing.Size(33, 13);
             this.lblRateCount.TabIndex = 13;
@@ -195,7 +195,7 @@
             this.lblDate.AutoSize = true;
             this.lblDate.BackColor = System.Drawing.Color.Transparent;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblDate.Location = new System.Drawing.Point(163, 148);
+            this.lblDate.Location = new System.Drawing.Point(163, 153);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(103, 20);
             this.lblDate.TabIndex = 14;
@@ -217,7 +217,7 @@
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
             this.lblLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblLanguage.Location = new System.Drawing.Point(163, 174);
+            this.lblLanguage.Location = new System.Drawing.Point(163, 176);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(85, 20);
             this.lblLanguage.TabIndex = 16;
@@ -258,10 +258,10 @@
             // 
             this.lblSubtitle.AutoSize = true;
             this.lblSubtitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblSubtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblSubtitle.Location = new System.Drawing.Point(235, 41);
+            this.lblSubtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblSubtitle.Location = new System.Drawing.Point(165, 54);
             this.lblSubtitle.Name = "lblSubtitle";
-            this.lblSubtitle.Size = new System.Drawing.Size(60, 20);
+            this.lblSubtitle.Size = new System.Drawing.Size(53, 17);
             this.lblSubtitle.TabIndex = 21;
             this.lblSubtitle.Text = "subtitle";
             // 
@@ -319,7 +319,7 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtBookName);
             this.Name = "Books";
-            this.Text = "Books";
+            this.Text = "GoogleBooks";
             ((System.ComponentModel.ISupportInitialize)(this.pbFront)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar2)).EndInit();

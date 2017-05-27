@@ -16,7 +16,7 @@ namespace Widgets
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Books());
+            Application.Run(new MultiFormContext(new Books(), new Weather()));
         }
     }
 }
