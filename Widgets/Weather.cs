@@ -14,10 +14,11 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 namespace Widgets
 {
-    public partial class Weather : Form
+    public partial class Weather : Form, IJson
     {
         private Location location;
         private Condition condition;
@@ -48,11 +49,34 @@ namespace Widgets
             public string low { get; set; }
         }
 
+        // Creates rounded corners
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect, // x-coordinate of upper-left corner
+            int nTopRect, // y-coordinate of upper-left corner
+            int nRightRect, // x-coordinate of lower-right corner
+            int nBottomRect, // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+         );
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         // Initialiazes the form with the defualt data 
         public Weather()
         {
             InitializeComponent();
             btnGetWeather_Click(null, null);
+            this.FormBorderStyle = FormBorderStyle.None;
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            this.Opacity = 0.85;
         }
 
         // Updates the data displayed in the form
@@ -109,7 +133,7 @@ namespace Widgets
         }
 
         // Parses the jason objected recieved and updates the properties
-        private void getWeather(string json)
+        public void parse(string json)
         {
             JObject root = JObject.Parse(json);
 
@@ -134,16 +158,24 @@ namespace Widgets
         {
             string response = Connect.SendRequest("http://localhost:8888/api/weather/?location=" + txtLocation.Text + "&u=" + lblUnit.Text);
 
+            // The server returned a response
             if (response != null)
             {
-                getWeather(response);
+                // Parse it
+                parse(response);
+            }
+
+            // Server didn't respond, display a suitable error 
+            else
+            {
+                MessageBox.Show("Error! Couldn't connect to server. Please, try again later.");
             }
         }
 
         // Exits the application
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         // Changes the displayed temperture units from Fahrenheit and Celsius
@@ -178,13 +210,23 @@ namespace Widgets
         private void txtLocation_TextChanged(object sender, EventArgs e)
         {
             // Checks if the text isn't in the right syntax, which is city[,country]
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text, "^[a-zA-Z ]+(?:,[a-zA-Z ]+)*$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text, "^[a-zA-Z ]+(?:,+[a-zA-Z ]+)*$"))
             {
                 // Display a message box explaining the wanted syntax
                 MessageBox.Show("You can only search for city names." +
                                 "\n Possibly be followed by a comma and a country name." +
                                 "\n No numbers and specail charactres are allowed.");
                 txtLocation.Text = this.location.city + "," + this.location.country;
+            }
+        }
+
+        // Moves the form according to mouse movment
+        private void Weather_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
     }

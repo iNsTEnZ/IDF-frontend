@@ -93,9 +93,17 @@ namespace Widgets
         {
             string response = Connect.SendRequest("http://localhost:8888/api/books/?bookName=" + txtBookName.Text);
 
+            // Check if the server returned a respond
             if (response != null)
             {
+                // Parse it
                 parse(response);
+            }
+
+            // Server didn't respond, display a suitable error 
+            else
+            {
+                MessageBox.Show("Error! Couldn't connect to server. Please, try again later.");
             }
         }
 
@@ -237,6 +245,15 @@ namespace Widgets
         {
             int currRes = Int32.Parse(Regex.Match(lblResNum.Text, @"\d+").Value);
             searchResults(currRes - 2);
+        }
+
+        private void txtBookName_KeyDown(object sender, KeyEventArgs e)
+        {
+            // checks if the pressed key was Enter
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
         }
     }
 }

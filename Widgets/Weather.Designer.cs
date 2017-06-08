@@ -73,7 +73,8 @@ namespace Widgets
             this.btnGetWeather.BackColor = System.Drawing.Color.Transparent;
             this.btnGetWeather.BackgroundImage = global::Widgets.Properties.Resources.refresh_button_png_image_20227;
             this.btnGetWeather.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGetWeather.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGetWeather.FlatAppearance.BorderSize = 0;
+            this.btnGetWeather.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGetWeather.Location = new System.Drawing.Point(118, 14);
             this.btnGetWeather.Name = "btnGetWeather";
             this.btnGetWeather.Size = new System.Drawing.Size(28, 23);
@@ -84,14 +85,15 @@ namespace Widgets
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
-            this.btnExit.BackgroundImage = global::Widgets.Properties.Resources.Background1;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExit.BackgroundImage = global::Widgets.Properties.Resources.exit;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.ForeColor = System.Drawing.Color.Silver;
-            this.btnExit.Location = new System.Drawing.Point(624, 15);
+            this.btnExit.Location = new System.Drawing.Point(633, 12);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(35, 22);
             this.btnExit.TabIndex = 3;
-            this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -124,7 +126,7 @@ namespace Widgets
             this.lblLoc.BackColor = System.Drawing.Color.Transparent;
             this.lblLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoc.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblLoc.Location = new System.Drawing.Point(394, 180);
+            this.lblLoc.Location = new System.Drawing.Point(404, 180);
             this.lblLoc.Name = "lblLoc";
             this.lblLoc.Size = new System.Drawing.Size(102, 26);
             this.lblLoc.TabIndex = 7;
@@ -465,8 +467,10 @@ namespace Widgets
             this.Controls.Add(this.btnGetWeather);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Weather";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Weather";
             this.Load += new System.EventHandler(this.Wetaher_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Weather_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbForecast1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbForecast2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbForecast3)).EndInit();

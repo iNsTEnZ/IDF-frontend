@@ -64,6 +64,7 @@
             this.txtBookName.Name = "txtBookName";
             this.txtBookName.Size = new System.Drawing.Size(100, 20);
             this.txtBookName.TabIndex = 0;
+            this.txtBookName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBookName_KeyDown);
             // 
             // btnSearch
             // 
@@ -318,7 +319,9 @@
             this.Controls.Add(this.pbFront);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtBookName);
+            this.Location = new System.Drawing.Point(670, 0);
             this.Name = "Books";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "GoogleBooks";
             ((System.ComponentModel.ISupportInitialize)(this.pbFront)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar1)).EndInit();
