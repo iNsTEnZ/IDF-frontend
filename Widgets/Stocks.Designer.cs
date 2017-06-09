@@ -286,6 +286,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Stocks";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stocks";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Stocks_MouseDown);
             this.ResumeLayout(false);

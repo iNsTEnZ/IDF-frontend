@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -50,6 +51,18 @@ namespace Widgets
             public string thumbnail { get; set; }
         }
 
+        // Creates rounded corners
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect, // x-coordinate of upper-left corner
+            int nTopRect, // y-coordinate of upper-left corner
+            int nRightRect, // x-coordinate of lower-right corner
+            int nBottomRect, // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+         );
+
         public Books()
         {
             InitializeComponent();
@@ -59,7 +72,14 @@ namespace Widgets
             RATES[2] = pbStar3;
             RATES[3] = pbStar4;
             RATES[4] = pbStar5;
- 
+
+            // Set form and text box corners to be round
+            this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            this.txtBookName.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, this.txtBookName.Width, this.txtBookName.Height, 5, 5));
+
+            // Set the transperaty of the widget
+            this.Opacity = 0.9;
+
             show(false);
         }
 
@@ -91,19 +111,20 @@ namespace Widgets
         // Sends a request to the server and returns its response
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string response = Connect.SendRequest("http://localhost:8888/api/books/?bookName=" + txtBookName.Text);
-
-            // Check if the server returned a respond
-            if (response != null)
+            if (txtBookName.Text != string.Empty)
             {
-                // Parse it
-                parse(response);
-            }
+                string response = Connect.SendRequest("http://localhost:8888/api/books/?bookName=" + txtBookName.Text);
 
-            // Server didn't respond, display a suitable error 
+                // Check if the server returned a respond
+                if (response != null)
+                {
+                    // Parse it
+                    parse(response);
+                }
+            }
             else
             {
-                MessageBox.Show("Error! Couldn't connect to server. Please, try again later.");
+                MessageBox.Show("Error! You need to enter a book name to search for.");
             }
         }
 
@@ -113,7 +134,7 @@ namespace Widgets
             JObject root = JObject.Parse(json);
 
             // Checks if the api query retrieved any results
-            if (root["query"]["results"].ToString() != string.Empty)
+            if (root["query"]["results"]["json"]["totalItems"].ToString() != "0")
             {
                 this.results = root["query"]["results"]["json"]["items"].ToObject<Items[]>();
                 searchResults(0);
@@ -254,6 +275,11 @@ namespace Widgets
             {
                 btnSearch.PerformClick();
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

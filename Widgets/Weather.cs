@@ -164,12 +164,6 @@ namespace Widgets
                 // Parse it
                 parse(response);
             }
-
-            // Server didn't respond, display a suitable error 
-            else
-            {
-                MessageBox.Show("Error! Couldn't connect to server. Please, try again later.");
-            }
         }
 
         // Exits the application

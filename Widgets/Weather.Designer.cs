@@ -467,7 +467,7 @@ namespace Widgets
             this.Controls.Add(this.btnGetWeather);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Weather";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Weather";
             this.Load += new System.EventHandler(this.Wetaher_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Weather_MouseDown);

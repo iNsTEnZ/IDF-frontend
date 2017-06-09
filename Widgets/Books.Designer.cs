@@ -50,6 +50,7 @@
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.txtDesc = new System.Windows.Forms.TextBox();
+            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar2)).BeginInit();
@@ -60,7 +61,9 @@
             // 
             // txtBookName
             // 
-            this.txtBookName.Location = new System.Drawing.Point(23, 3);
+            this.txtBookName.Font = new System.Drawing.Font("Eras Medium ITC", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBookName.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtBookName.Location = new System.Drawing.Point(23, 5);
             this.txtBookName.Name = "txtBookName";
             this.txtBookName.Size = new System.Drawing.Size(100, 20);
             this.txtBookName.TabIndex = 0;
@@ -68,12 +71,16 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(129, 3);
+            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
+            this.btnSearch.BackgroundImage = global::Widgets.Properties.Resources.search;
+            this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Location = new System.Drawing.Point(129, 5);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(28, 25);
             this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // pbFront
@@ -90,11 +97,11 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblTitle.Font = new System.Drawing.Font("Eras Demi ITC", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(160, 27);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(66, 29);
+            this.lblTitle.Size = new System.Drawing.Size(60, 28);
             this.lblTitle.TabIndex = 3;
             this.lblTitle.Text = "Title";
             // 
@@ -102,10 +109,11 @@
             // 
             this.lblAuthor.AutoSize = true;
             this.lblAuthor.BackColor = System.Drawing.Color.Transparent;
-            this.lblAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblAuthor.Font = new System.Drawing.Font("Eras Medium ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblAuthor.Location = new System.Drawing.Point(163, 72);
             this.lblAuthor.Name = "lblAuthor";
-            this.lblAuthor.Size = new System.Drawing.Size(85, 24);
+            this.lblAuthor.Size = new System.Drawing.Size(90, 22);
             this.lblAuthor.TabIndex = 4;
             this.lblAuthor.Text = "Author/s:";
             // 
@@ -113,10 +121,11 @@
             // 
             this.lblRating.AutoSize = true;
             this.lblRating.BackColor = System.Drawing.Color.Transparent;
-            this.lblRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblRating.Font = new System.Drawing.Font("Eras Medium ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblRating.Location = new System.Drawing.Point(164, 95);
             this.lblRating.Name = "lblRating";
-            this.lblRating.Size = new System.Drawing.Size(61, 24);
+            this.lblRating.Size = new System.Drawing.Size(63, 22);
             this.lblRating.TabIndex = 5;
             this.lblRating.Text = "rating:";
             // 
@@ -174,10 +183,11 @@
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.BackColor = System.Drawing.Color.Transparent;
-            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblCategory.Font = new System.Drawing.Font("Eras Light ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCategory.Location = new System.Drawing.Point(162, 127);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(77, 20);
+            this.lblCategory.Size = new System.Drawing.Size(72, 20);
             this.lblCategory.TabIndex = 12;
             this.lblCategory.Text = "Category:";
             // 
@@ -185,9 +195,11 @@
             // 
             this.lblRateCount.AutoSize = true;
             this.lblRateCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblRateCount.Font = new System.Drawing.Font("Eras Light ITC", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRateCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblRateCount.Location = new System.Drawing.Point(381, 103);
             this.lblRateCount.Name = "lblRateCount";
-            this.lblRateCount.Size = new System.Drawing.Size(33, 13);
+            this.lblRateCount.Size = new System.Drawing.Size(34, 14);
             this.lblRateCount.TabIndex = 13;
             this.lblRateCount.Text = "(num)";
             // 
@@ -195,10 +207,11 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblDate.Font = new System.Drawing.Font("Eras Light ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDate.Location = new System.Drawing.Point(163, 153);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(103, 20);
+            this.lblDate.Size = new System.Drawing.Size(95, 20);
             this.lblDate.TabIndex = 14;
             this.lblDate.Text = "Publish Date:";
             // 
@@ -206,10 +219,11 @@
             // 
             this.lblPublisher.AutoSize = true;
             this.lblPublisher.BackColor = System.Drawing.Color.Transparent;
-            this.lblPublisher.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblPublisher.Font = new System.Drawing.Font("Eras Light ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPublisher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblPublisher.Location = new System.Drawing.Point(356, 149);
             this.lblPublisher.Name = "lblPublisher";
-            this.lblPublisher.Size = new System.Drawing.Size(78, 20);
+            this.lblPublisher.Size = new System.Drawing.Size(72, 20);
             this.lblPublisher.TabIndex = 15;
             this.lblPublisher.Text = "Publisher:";
             // 
@@ -217,10 +231,11 @@
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblLanguage.Font = new System.Drawing.Font("Eras Light ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLanguage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblLanguage.Location = new System.Drawing.Point(163, 176);
             this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(85, 20);
+            this.lblLanguage.Size = new System.Drawing.Size(79, 20);
             this.lblLanguage.TabIndex = 16;
             this.lblLanguage.Text = "Language:";
             // 
@@ -228,30 +243,37 @@
             // 
             this.lblPages.AutoSize = true;
             this.lblPages.BackColor = System.Drawing.Color.Transparent;
-            this.lblPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblPages.Font = new System.Drawing.Font("Eras Light ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblPages.Location = new System.Drawing.Point(356, 174);
             this.lblPages.Name = "lblPages";
-            this.lblPages.Size = new System.Drawing.Size(58, 20);
+            this.lblPages.Size = new System.Drawing.Size(51, 20);
             this.lblPages.TabIndex = 17;
             this.lblPages.Text = "Pages:";
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(521, 466);
+            this.btnNext.BackColor = System.Drawing.Color.Transparent;
+            this.btnNext.BackgroundImage = global::Widgets.Properties.Resources.next1;
+            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Location = new System.Drawing.Point(569, 456);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.Size = new System.Drawing.Size(28, 22);
             this.btnNext.TabIndex = 19;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // lblResNum
             // 
             this.lblResNum.AutoSize = true;
             this.lblResNum.BackColor = System.Drawing.Color.Transparent;
+            this.lblResNum.Font = new System.Drawing.Font("Eras Light ITC", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblResNum.Location = new System.Drawing.Point(20, 463);
             this.lblResNum.Name = "lblResNum";
-            this.lblResNum.Size = new System.Drawing.Size(80, 13);
+            this.lblResNum.Size = new System.Drawing.Size(77, 14);
             this.lblResNum.TabIndex = 20;
             this.lblResNum.Text = "Result Number:";
             // 
@@ -259,29 +281,35 @@
             // 
             this.lblSubtitle.AutoSize = true;
             this.lblSubtitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblSubtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblSubtitle.Font = new System.Drawing.Font("Eras Medium ITC", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblSubtitle.Location = new System.Drawing.Point(165, 54);
             this.lblSubtitle.Name = "lblSubtitle";
-            this.lblSubtitle.Size = new System.Drawing.Size(53, 17);
+            this.lblSubtitle.Size = new System.Drawing.Size(49, 15);
             this.lblSubtitle.TabIndex = 21;
             this.lblSubtitle.Text = "subtitle";
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(440, 466);
+            this.btnBack.BackColor = System.Drawing.Color.Transparent;
+            this.btnBack.BackgroundImage = global::Widgets.Properties.Resources.back2;
+            this.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Location = new System.Drawing.Point(544, 456);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.Size = new System.Drawing.Size(28, 22);
             this.btnBack.TabIndex = 22;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // txtDesc
             // 
             this.txtDesc.BackColor = System.Drawing.Color.White;
             this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.txtDesc.Location = new System.Drawing.Point(23, 213);
+            this.txtDesc.Font = new System.Drawing.Font("Eras Light ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtDesc.Location = new System.Drawing.Point(23, 203);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.ReadOnly = true;
@@ -289,14 +317,29 @@
             this.txtDesc.Size = new System.Drawing.Size(573, 247);
             this.txtDesc.TabIndex = 23;
             // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.BackgroundImage = global::Widgets.Properties.Resources.exit;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Location = new System.Drawing.Point(676, 3);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(24, 23);
+            this.btnExit.TabIndex = 24;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // Books
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackgroundImage = global::Widgets.Properties.Resources.books;
+            this.BackgroundImage = global::Widgets.Properties.Resources.books1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(711, 494);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblSubtitle);
@@ -319,9 +362,12 @@
             this.Controls.Add(this.pbFront);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtBookName);
+            this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(670, 0);
             this.Name = "Books";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GoogleBooks";
             ((System.ComponentModel.ISupportInitialize)(this.pbFront)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStar1)).EndInit();
@@ -358,5 +404,6 @@
         private System.Windows.Forms.Label lblSubtitle;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.TextBox txtDesc;
+        private System.Windows.Forms.Button btnExit;
     }
 }
