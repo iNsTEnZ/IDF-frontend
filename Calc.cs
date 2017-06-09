@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,24 +14,24 @@ namespace Widgets
     {
         int num1, num2;
         char oper;
-        bool num1Flag = false, operFlag = false;
+        bool  firstNumber;
         Button[] operators;
         Button[] numbers;
 
         private void number_Click(object sender, EventArgs e)
         {
 
-            if (this.num1Flag)
+            if (this.firstNumber)
             {
                 this.num1 = int.Parse(((Button)sender).Text);
-                this.num1Flag = true;
-                this.lbRes.Text = this.num1.ToString();
+                this.lbRes.Text += this.num1.ToString();
+                changeButtonState(this.operators, true);
             }
             else
             {
                 var a = (Button)sender;
                 this.num2 = int.Parse(((Button)sender).Text);
-                this.num1Flag = false;
+                this.firstNumber = false;
                 this.lbRes.Text += this.num2.ToString();
             }
         }
@@ -40,25 +40,38 @@ namespace Widgets
         {
             this.oper = ((Button)sender).Text.ToCharArray()[0];
             this.lbRes.Text += oper;
-            //this.Enabled = false;
+            changeButtonState(this.operators, false);
+            this.firstNumber = false;
+            changeButtonState(new Button[] { this.btnEqual }, true);
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-
+            this.lbRes.Text += "=";
+            changeButtonState(this.numbers, false);
+            changeButtonState(new Button[] { this.btnEqual }, false);
         }
 
         public Calc()
         {
             InitializeComponent();
+            this.firstNumber = true;
             this.operators = new Button[] { this.btnDiv,this.btnMinus,this.btnMul, this.btnPlus};
             this.numbers = new Button[] { this.button1, this.button2, this.button3, this.button4, this.button5, this.button6, this.button7, this.button8, this.button9, this.button0 };
-            changeButtonState
+            newCalc();
+        }
+
+        private void btnCE_Click(object sender, EventArgs e)
+        {
+            
+            newCalc();
+        }
+
+        public void newCalc()
+        {
+            changeButtonState(this.operators, false);
+            changeButtonState(new Button[] { this.btnEqual}, false);
+            changeButtonState(this.numbers, true);
         }
         public void changeButtonState(Button[] arr,bool enabled)
         {
