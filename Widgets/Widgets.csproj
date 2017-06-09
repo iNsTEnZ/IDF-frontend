@@ -56,6 +56,12 @@
     <Compile Include="Books.Designer.cs">
       <DependentUpon>Books.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clocks.Designer.cs">
+      <DependentUpon>Clocks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connect.cs" />
     <Compile Include="IJson.cs" />
     <Compile Include="Main.cs">
@@ -81,6 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Books.resx">
       <DependentUpon>Books.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clocks.resx">
+      <DependentUpon>Clocks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -118,7 +127,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="bin\Stars\0.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\back2.png" />
     <None Include="Resources\next1.png" />
@@ -136,55 +147,70 @@
     <None Include="Resources\refresh-button-png-image-20227.png" />
     <None Include="refresh_page.png" />
     <None Include="Background.jpg" />
-    <Content Include="Pics\0.png" />
-    <Content Include="Pics\1.png" />
-    <Content Include="Pics\10.png" />
-    <Content Include="Pics\11.png" />
-    <Content Include="Pics\12.png" />
-    <Content Include="Pics\13.png" />
-    <Content Include="Pics\14.png" />
-    <Content Include="Pics\15.png" />
-    <Content Include="Pics\16.png" />
-    <Content Include="Pics\17.png" />
-    <Content Include="Pics\18.png" />
-    <Content Include="Pics\19.png" />
-    <Content Include="Pics\2.png" />
-    <Content Include="Pics\20.png" />
-    <Content Include="Pics\21.png" />
-    <Content Include="Pics\22.png" />
-    <Content Include="Pics\23.png" />
-    <Content Include="Pics\24.png" />
-    <Content Include="Pics\25.png" />
-    <Content Include="Pics\26.png" />
-    <Content Include="Pics\27.png" />
-    <Content Include="Pics\28.png" />
-    <Content Include="Pics\29.png" />
-    <Content Include="Pics\3.png" />
-    <Content Include="Pics\30.png" />
-    <Content Include="Pics\31.png" />
-    <Content Include="Pics\32.png" />
-    <Content Include="Pics\3200.png" />
-    <Content Include="Pics\33.png" />
-    <Content Include="Pics\34.png" />
-    <Content Include="Pics\35.png" />
-    <Content Include="Pics\36.png" />
-    <Content Include="Pics\37.png" />
-    <Content Include="Pics\38.png" />
-    <Content Include="Pics\39.png" />
-    <Content Include="Pics\4.png" />
-    <Content Include="Pics\40.png" />
-    <Content Include="Pics\41.png" />
-    <Content Include="Pics\42.png" />
-    <Content Include="Pics\43.png" />
-    <Content Include="Pics\44.png" />
-    <Content Include="Pics\45.png" />
-    <Content Include="Pics\46.png" />
-    <Content Include="Pics\47.png" />
-    <Content Include="Pics\5.png" />
-    <Content Include="Pics\6.png" />
-    <Content Include="Pics\7.png" />
-    <Content Include="Pics\8.png" />
-    <Content Include="Pics\9.png" />
+    <None Include="bin\Pics\0.png" />
+    <None Include="bin\Pics\1.png" />
+    <None Include="bin\Pics\2.png" />
+    <None Include="bin\Pics\3.png" />
+    <None Include="bin\Pics\4.png" />
+    <None Include="bin\Pics\5.png" />
+    <None Include="bin\Pics\6.png" />
+    <None Include="bin\Pics\7.png" />
+    <None Include="bin\Pics\8.png" />
+    <None Include="bin\Pics\9.png" />
+    <None Include="bin\Pics\10.png" />
+    <None Include="bin\Pics\11.png" />
+    <None Include="bin\Pics\12.png" />
+    <None Include="bin\Pics\13.png" />
+    <None Include="bin\Pics\14.png" />
+    <None Include="bin\Pics\15.png" />
+    <None Include="bin\Pics\16.png" />
+    <None Include="bin\Pics\17.png" />
+    <None Include="bin\Pics\18.png" />
+    <None Include="bin\Pics\19.png" />
+    <None Include="bin\Pics\20.png" />
+    <None Include="bin\Pics\21.png" />
+    <None Include="bin\Pics\22.png" />
+    <None Include="bin\Pics\23.png" />
+    <None Include="bin\Pics\24.png" />
+    <None Include="bin\Pics\25.png" />
+    <None Include="bin\Pics\26.png" />
+    <None Include="bin\Pics\27.png" />
+    <None Include="bin\Pics\28.png" />
+    <None Include="bin\Pics\29.png" />
+    <None Include="bin\Pics\30.png" />
+    <None Include="bin\Pics\31.png" />
+    <None Include="bin\Pics\32.png" />
+    <None Include="bin\Pics\33.png" />
+    <None Include="bin\Pics\34.png" />
+    <None Include="bin\Pics\35.png" />
+    <None Include="bin\Pics\36.png" />
+    <None Include="bin\Pics\37.png" />
+    <None Include="bin\Pics\38.png" />
+    <None Include="bin\Pics\39.png" />
+    <None Include="bin\Pics\40.png" />
+    <None Include="bin\Pics\41.png" />
+    <None Include="bin\Pics\42.png" />
+    <None Include="bin\Pics\43.png" />
+    <None Include="bin\Pics\44.png" />
+    <None Include="bin\Pics\45.png" />
+    <None Include="bin\Pics\46.png" />
+    <None Include="bin\Pics\47.png" />
+    <None Include="bin\Pics\na.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Stars\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Stars\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Stars\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Stars\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Unavailable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

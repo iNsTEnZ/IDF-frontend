@@ -161,7 +161,15 @@ namespace Widgets
             lblPublisher.Text = "Publisher: " + this.results[resNum].volumeInfo.publisher;
 
             // Loads pictures to picture boxes
-            pbFront.Load(this.results[resNum].volumeInfo.imageLinks.thumbnail);
+            if (this.results[resNum].volumeInfo.imageLinks != null)
+            {
+                pbFront.Load(this.results[resNum].volumeInfo.imageLinks.thumbnail);
+            }
+            else
+            {
+                pbFront.Image = Widgets.Properties.Resources.Unavailable;
+            }
+
             setRating(this.results[resNum].volumeInfo.averageRating);
 
             // Set the buttons 
@@ -209,26 +217,26 @@ namespace Widgets
                 // Sets whole star image
                 for (int i = 0; i < whole; i++)
                 {
-                    RATES[i].Image = Image.FromFile("../Stars/4.png");
+                    RATES[i].Image = Widgets.Properties.Resources.star4; 
                 }
             }
 
             if (fraction < 0.5 && fraction > 0)
             {
-                RATES[whole].Image = Image.FromFile("../Stars/1.png");
+                RATES[whole].Image = Widgets.Properties.Resources.star1; 
             }
             else if (fraction == 0.5)
             {
-                RATES[whole].Image = Image.FromFile("../Stars/2.png");
+                RATES[whole].Image = Widgets.Properties.Resources.star2; 
             }
             else if (fraction > 0.5)
             {
-                RATES[whole].Image = Image.FromFile("../Stars/3.png");
+                RATES[whole].Image = Widgets.Properties.Resources.star3; 
             }
 
             for (int i = (fraction == 0 ? whole : whole + 1); i < 5; i++)
             {
-                RATES[i].Image = Image.FromFile("../Stars/0.png");
+                RATES[i].Image = Widgets.Properties.Resources.star0; 
             }
         }
         // Displays the authors
@@ -247,10 +255,10 @@ namespace Widgets
                     string concatenated = string.Join(",", authors.Cast<string>().ToArray<string>());
                     lblAuthor.Text = "Author/s: " + concatenated;
                 }
-            }
-            else
-            {
-                lblAuthor.Text = "Author/s: " + this.results[resNum].volumeInfo.authors;
+                else
+                {
+                    lblAuthor.Text = "Author/s: " + this.results[resNum].volumeInfo.authors;
+                }
             }
         }
 

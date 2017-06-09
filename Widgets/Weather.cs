@@ -15,6 +15,7 @@ using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
+using Widgets.Properties;
 
 namespace Widgets
 {
@@ -24,6 +25,8 @@ namespace Widgets
         private Condition condition;
         private Forecast[] forecast = new Forecast[6];
         private string lastUpdate;
+
+        private static PictureBox[] DAYS = new PictureBox[6];
 
         // Represents the location for which we provide the weather for
         internal class Location
@@ -73,6 +76,14 @@ namespace Widgets
         public Weather()
         {
             InitializeComponent();
+
+            DAYS[0] = pbCondition;
+            DAYS[1] = pbForecast1;
+            DAYS[2] = pbForecast2;
+            DAYS[3] = pbForecast3;
+            DAYS[4] = pbForecast4;
+            DAYS[5] = pbForecast5;
+
             btnGetWeather_Click(null, null);
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
@@ -111,24 +122,17 @@ namespace Widgets
         // Sets the images for the next 5 days weather forecast
         private void setIcons()
         {
-            pbCondition.Image = Image.FromFile(getString(this.condition.code));
-            pbForecast1.Image = Image.FromFile(getString(this.forecast[1].code));
-            pbForecast2.Image = Image.FromFile(getString(this.forecast[2].code));
-            pbForecast3.Image = Image.FromFile(getString(this.forecast[3].code));
-            pbForecast4.Image = Image.FromFile(getString(this.forecast[4].code));
-            pbForecast5.Image = Image.FromFile(getString(this.forecast[5].code));
-        }
+            object obj;
 
-        // Creates and returns a path to the requiered image
-        private string getString(string code)
-        {
-            if (code == "3200")
+            // Set current condition icon
+            obj = Resources.ResourceManager.GetObject("_" + this.condition.code);
+            pbCondition.Image = (Image)obj;
+
+            // Set forecast icons
+            for (int i = 0; i < 6; i++)
             {
-                return "../Pics/na.png";
-            }
-            else
-            {
-                return "../Pics/" + code + ".png";
+                obj = Resources.ResourceManager.GetObject("_" + this.forecast[i].code);
+                DAYS[i].Image = (Image)obj;
             }
         }
 

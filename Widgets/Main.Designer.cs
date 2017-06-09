@@ -110,6 +110,7 @@
             this.btnClock.TabIndex = 4;
             this.btnClock.Text = "World Clocks";
             this.btnClock.UseVisualStyleBackColor = false;
+            this.btnClock.Click += new System.EventHandler(this.btnClock_Click);
             // 
             // btnWord
             // 

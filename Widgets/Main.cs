@@ -61,5 +61,11 @@ namespace Widgets
             Books bk = new Books();
             bk.Show();
         }
+
+        private void btnClock_Click(object sender, EventArgs e)
+        {
+            Clocks clck = new Clocks();
+            clck.Show();
+        }
     }
 }
