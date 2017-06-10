@@ -22,6 +22,9 @@ namespace Widgets
 
             // Set the transperaty of the widget
             this.Opacity = 0.9;
+
+            // Fetch a word from server
+            getWord();
         }
 
         // Creates rounded corners
@@ -36,6 +39,22 @@ namespace Widgets
             int nHeightEllipse // width of ellipse
          );
 
+        // Exits the widget
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        // Get a randomiaze word
+        private void getWord()
+        {
+            string response = Connect.SendRequest("http://localhost:8888/api/wordofday"); 
+
+            if (response != string.Empty)
+            {
+                string[] parsed = response.Split('"');
+                this.txtWord.Text = parsed[parsed.Length - 2];
+            }
+        }
     }
 }

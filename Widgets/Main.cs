@@ -73,5 +73,11 @@ namespace Widgets
             Calculator calc = new Calculator();
             calc.Show();
         }
+
+        private void btnWord_Click(object sender, EventArgs e)
+        {
+            WordOfTheDay wotd = new WordOfTheDay();
+            wotd.Show();
+        }
     }
 }

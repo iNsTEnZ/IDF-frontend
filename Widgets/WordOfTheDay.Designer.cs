@@ -28,21 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblWord = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
-            this.txtDesc = new System.Windows.Forms.TextBox();
+            this.txtWord = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // lblWord
-            // 
-            this.lblWord.AutoSize = true;
-            this.lblWord.Font = new System.Drawing.Font("Eras Demi ITC", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblWord.Location = new System.Drawing.Point(12, 46);
-            this.lblWord.Name = "lblWord";
-            this.lblWord.Size = new System.Drawing.Size(86, 31);
-            this.lblWord.TabIndex = 0;
-            this.lblWord.Text = "Word";
             // 
             // btnExit
             // 
@@ -51,35 +39,36 @@
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Location = new System.Drawing.Point(347, 9);
+            this.btnExit.Location = new System.Drawing.Point(444, 12);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(26, 23);
             this.btnExit.TabIndex = 2;
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // txtDesc
+            // txtWord
             // 
-            this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDesc.Font = new System.Drawing.Font("Eras Light ITC", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtDesc.Location = new System.Drawing.Point(12, 87);
-            this.txtDesc.Multiline = true;
-            this.txtDesc.Name = "txtDesc";
-            this.txtDesc.ReadOnly = true;
-            this.txtDesc.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtDesc.Size = new System.Drawing.Size(360, 168);
-            this.txtDesc.TabIndex = 3;
+            this.txtWord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
+            this.txtWord.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtWord.Font = new System.Drawing.Font("Eras Medium ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtWord.Location = new System.Drawing.Point(12, 57);
+            this.txtWord.Multiline = true;
+            this.txtWord.Name = "txtWord";
+            this.txtWord.ReadOnly = true;
+            this.txtWord.Size = new System.Drawing.Size(453, 42);
+            this.txtWord.TabIndex = 3;
             // 
             // WordOfTheDay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = global::Widgets.Properties.Resources.clac;
-            this.ClientSize = new System.Drawing.Size(384, 267);
-            this.Controls.Add(this.txtDesc);
+            this.ClientSize = new System.Drawing.Size(474, 111);
+            this.Controls.Add(this.txtWord);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.lblWord);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WordOfTheDay";
             this.Text = "WordOfTheDay";
@@ -89,9 +78,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblWord;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.TextBox txtDesc;
+        private System.Windows.Forms.TextBox txtWord;
     }
 }

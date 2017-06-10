@@ -126,6 +126,7 @@
             this.btnWord.TabIndex = 5;
             this.btnWord.Text = "Word of the Day";
             this.btnWord.UseVisualStyleBackColor = false;
+            this.btnWord.Click += new System.EventHandler(this.btnWord_Click);
             // 
             // btnCalendar
             // 
