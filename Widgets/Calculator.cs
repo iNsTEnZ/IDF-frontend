@@ -15,9 +15,7 @@ namespace Widgets
     {
         public string op { get; set; }
         public string od1 { get; set; }
-        public string od2 { get; set; }
-
-        private bool flage;
+        public string od2 { get; set; }     
 
         public Calculator()
         {
@@ -29,9 +27,9 @@ namespace Widgets
             // Set the transperaty of the widget
             this.Opacity = 0.8;
 
-            this.op = "";
+            this.op  = "";
             this.od1 = "";
-            this.od2 = "";
+            this.od2 = "";            
         }
 
         // Creates rounded corners
@@ -52,127 +50,55 @@ namespace Widgets
             this.Close();
         }
 
-        private void btn7_Click(object sender, EventArgs e)
+        // Adds a number to the expression
+        private void num_Click(object sender, EventArgs e)
         {
-            this.lblCalc.Text += "7";
+            this.lblCalc.Text += (sender as Button).Text;
         }
 
-        private void btn8_Click(object sender, EventArgs e)
-        {
-
-            this.lblCalc.Text += "8";
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            this.lblCalc.Text += "9";
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            this.lblCalc.Text += "4";
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            this.lblCalc.Text += "5";
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            this.lblCalc.Text += "6";
-        }
-
-        private void btn1_Click(object sender, EventArgs e)
-        {
-            this.lblCalc.Text += "1";
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            this.lblCalc.Text += "2";
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            this.lblCalc.Text += "3";
-        }
-
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            this.lblCalc.Text += "0";
-        }
-
+        // Adds a dot, and prevents from writting double dots
         private void btnDot_Click(object sender, EventArgs e)
         {
             this.lblCalc.Text += ".";
             this.btnDot.Enabled = false;
         }
 
-        private void btnDiv_Click(object sender, EventArgs e)
+        // Changes the operator according to the button 
+        private void op_Click(object sender, EventArgs e)
         {
-            if (this.op == string.Empty)
+            // Checks that the operator is not the first to be inserted
+            if (this.lblCalc.Text != string.Empty)
             {
-                this.od1 = this.lblCalc.Text;
-            }
-            else
-            {
-                this.lblCalc.Text = this.lblCalc.Text.Substring(0, this.lblCalc.Text.Length - 3);
-            }
+                char lastChar = this.lblCalc.Text[this.lblCalc.Text.Length - 1];
 
-            this.op = "div";
-            this.lblCalc.Text += " ÷ ";
-            this.btnDot.Enabled = true;
+                // Will update the operator if one of these conditions will take place:
+                // 1. The last inserted char is a number and there isn't an operator char (the expression isn't complete)
+                // 2. The last inserted char is an operator (the operator is wished to be changed) 
+                if (((Char.IsNumber(lastChar)) && (lblCalc.Text.IndexOfAny("+-x÷".ToCharArray()) == -1)) || 
+                    ("+-x÷".IndexOf(lastChar) != -1))
+                {
+                    // Check if it's the first time chosing an operator
+                    if (this.op == string.Empty)
+                    {
+                        // save first operand
+                        this.od1 = this.lblCalc.Text;
+                    }
+
+                    // changing operator - deletes the previous one
+                    else
+                    {
+                        this.lblCalc.Text = this.lblCalc.Text.Substring(0, this.lblCalc.Text.Length - 1);
+                    }
+
+                    // Set the operator
+                    this.op = (sender as Button).Text;
+                    this.lblCalc.Text += (sender as Button).Text;
+                    this.btnDot.Enabled = true;
+                }
+            }
         }
 
-        private void btnMul_Click(object sender, EventArgs e)
-        {
-            if (this.op == string.Empty)
-            {
-                this.od1 = this.lblCalc.Text;
-            }
-            else
-            {
-                this.lblCalc.Text = this.lblCalc.Text.Substring(0, this.lblCalc.Text.Length - 3);
-            }
-
-            this.op = "mul";
-            this.lblCalc.Text += " x ";
-            this.btnDot.Enabled = true;
-        }
-
-        private void btnSub_Click(object sender, EventArgs e)
-        {
-            if (this.op == string.Empty)
-            {
-                this.od1 = this.lblCalc.Text;
-            }
-            else
-            {
-                this.lblCalc.Text = this.lblCalc.Text.Substring(0, this.lblCalc.Text.Length - 3);
-            }
-
-            this.op = "sub";
-            this.lblCalc.Text += " - ";
-            this.btnDot.Enabled = true;
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (this.op == string.Empty)
-            {
-                this.od1 = this.lblCalc.Text;
-            }
-            else
-            {
-                this.lblCalc.Text = this.lblCalc.Text.Substring(0, this.lblCalc.Text.Length - 3);
-            }
-
-            this.op = "add";
-            this.lblCalc.Text += " + ";
-            this.btnDot.Enabled = true;
-        }
-
+        // Rests form
         private void btnClear_Click(object sender, EventArgs e)
         {
             this.op = "";
@@ -183,17 +109,42 @@ namespace Widgets
 
         }
 
+        // Calculates the insereted experssion
         private void btnRes_Click(object sender, EventArgs e)
         {
+            // Checks a complete expression was insert
             if ((this.od1 != string.Empty) && (this.op != "") && (this.lblCalc.Text[this.lblCalc.Text.Length - 1] != '.'))
             {
-                this.od2 = this.lblCalc.Text.Split(' ')[2];
+                // Get the second operator
+                int start  = this.lblCalc.Text.IndexOfAny("+-x÷".ToCharArray()) + 1;
+                int length = this.lblCalc.Text.Length - start;
+                this.od2   = this.lblCalc.Text.Substring(start,length);
 
+                // Format operator to server understandable format
+                switch (this.op)
+                {
+                    case "+":
+                        this.op = "add";
+                        break;
+                    case "-":
+                        this.op = "sub";
+                        break;
+                    case "x":
+                        this.op = "mul";
+                        break;
+                    case "÷":
+                        this.op = "div";
+                        break;
+                }
+
+                // Send expression to server to calculate answer
                 string response = Connect.SendRequest("http://localhost:8888/api/calculator/?operand1=" + this.od1 +
                                                       "&operator=" + this.op + "&operand2=" + this.od2);
 
-                // Check if there was a response
-                if (response != string.Empty)
+                int n;
+
+                // Check if there was a response and display it
+                if (int.TryParse(response, out n))
                 {
                     this.lblCalc.Text = response;
                     this.handelControls(this, false);
@@ -203,6 +154,7 @@ namespace Widgets
             }
         }
 
+        // Enables or disables controls con according to toDO
         private void handelControls(Control con, bool toDo)
         {
             foreach (Control c in con.Controls)
@@ -212,6 +164,7 @@ namespace Widgets
             con.Enabled = toDo;
         }
 
+        // Enables a control and all it's parent controls
         private void enableControl(Control con)
         {
             if (con != null)
