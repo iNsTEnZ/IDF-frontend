@@ -50,10 +50,14 @@ namespace Widgets
         {
             string response = Connect.SendRequest("http://localhost:8888/api/wordofday"); 
 
-            if (response != string.Empty)
+            if (response != null)
             {
                 string[] parsed = response.Split('"');
                 this.txtWord.Text = parsed[parsed.Length - 2];
+            }
+            else
+            {
+                this.Close();
             }
         }
     }
