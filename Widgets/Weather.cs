@@ -208,7 +208,7 @@ namespace Widgets
         private void txtLocation_TextChanged(object sender, EventArgs e)
         {
             // Checks if the text isn't in the right syntax, which is city[,country]
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text, "^[a-zA-Z ]+(?:,+[a-zA-Z ]+)*$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtLocation.Text, "^[a-zA-Z ,]+(?:,+[a-zA-Z ]+)*$"))
             {
                 // Display a message box explaining the wanted syntax
                 MessageBox.Show("You can only search for city names." +

@@ -56,6 +56,12 @@
     <Compile Include="Books.Designer.cs">
       <DependentUpon>Books.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calculator.Designer.cs">
+      <DependentUpon>Calculator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clocks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Books.resx">
       <DependentUpon>Books.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calculator.resx">
+      <DependentUpon>Calculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Clocks.resx">
       <DependentUpon>Clocks.cs</DependentUpon>
@@ -211,6 +220,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Unavailable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clac.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,11 +13,14 @@ namespace Widgets
 {
     public partial class Clocks : Form
     {
-        Timer t = new Timer();
+        Dictionary<string, string> zones = new Dictionary<string, string>();
 
         public Clocks()
         {
             InitializeComponent();
+
+            addOptions();
+            cbLocation.SelectedIndex = 0;
 
             // Set form and combo box corners to be round
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
@@ -38,64 +41,21 @@ namespace Widgets
             int nHeightEllipse // width of ellipse
          );
 
-        private void Clocks_Load(object sender, EventArgs e)
+        private void addOptions()
         {
-            // Timer interval in milliseconds
-            t.Interval = 1000;
+            string response = Connect.SendRequest("http://localhost:8888/api/time/");
 
-            t.Tick += new EventHandler(this.t_Tick);
-
-            // Start timer when form loads
-            t.Start();
+            // Check if there was a response
+            if (response != null)
+            {
+                // Add options to combobox
+                // Save time and date for each country
+            }
         }
 
-        // Timer eventhandler
-        private void t_Tick(object sender, EventArgs e)
+        private void cbLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get current time
-            int hh = DateTime.Now.Hour;
-            int mm = DateTime.Now.Minute;
-            int ss = DateTime.Now.Second;
-
-            // Time
-            string time = "";
-
-            // Padding leading zero
-            if (hh < 10)
-            {
-                time += "0" + hh;
-            }
-            else
-            {
-                time += hh;
-            }
-
-            time += ":";
-
-            // Padding leading zero
-            if (mm < 10)
-            {
-                time += "0" + mm;
-            }
-            else
-            {
-                time += mm;
-            }
-
-            time += ":";
-
-            // Padding leading zero
-            if (ss < 10)
-            {
-                time += "0" + ss;
-            }
-            else
-            {
-                time += ss;
-            }
-
-            // Update lable
-            this.lblTime.Text = time;
+            // Display the time and date for the selected item
         }
     }
 }

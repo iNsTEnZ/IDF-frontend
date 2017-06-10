@@ -67,5 +67,11 @@ namespace Widgets
             Clocks clck = new Clocks();
             clck.Show();
         }
+
+        private void btnCalc_Click(object sender, EventArgs e)
+        {
+            Calculator calc = new Calculator();
+            calc.Show();
+        }
     }
 }

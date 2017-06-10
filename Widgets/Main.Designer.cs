@@ -51,6 +51,7 @@
             this.btnCalc.TabIndex = 0;
             this.btnCalc.Text = "Calculator";
             this.btnCalc.UseVisualStyleBackColor = false;
+            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
             // 
             // btnWeather
             // 
