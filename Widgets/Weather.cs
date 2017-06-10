@@ -125,13 +125,13 @@ namespace Widgets
             object obj;
 
             // Set current condition icon
-            obj = Resources.ResourceManager.GetObject("_" + this.condition.code);
+            obj = Resources.ResourceManager.GetObject(this.condition.code);
             pbCondition.Image = (Image)obj;
 
             // Set forecast icons
             for (int i = 0; i < 6; i++)
             {
-                obj = Resources.ResourceManager.GetObject("_" + this.forecast[i].code);
+                obj = Resources.ResourceManager.GetObject(this.forecast[i].code);
                 DAYS[i].Image = (Image)obj;
             }
         }
