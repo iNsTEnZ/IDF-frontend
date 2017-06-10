@@ -21,7 +21,7 @@ namespace Widgets
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
             // Set the transperaty of the widget
-            this.Opacity = 0.8;
+            this.Opacity = 0.9;
         }
 
         // Creates rounded corners
@@ -35,5 +35,7 @@ namespace Widgets
             int nWidthEllipse, // height of ellipse
             int nHeightEllipse // width of ellipse
          );
+
+
     }
 }

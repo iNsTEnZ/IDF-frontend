@@ -141,10 +141,8 @@ namespace Widgets
                 string response = Connect.SendRequest("http://localhost:8888/api/calculator/?operand1=" + this.od1 +
                                                       "&operator=" + this.op + "&operand2=" + this.od2);
 
-                int n;
-
                 // Check if there was a response and display it
-                if (int.TryParse(response, out n))
+                if (response != null)
                 {
                     this.lblCalc.Text = response;
                     this.handelControls(this, false);
