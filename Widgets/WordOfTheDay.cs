@@ -55,10 +55,6 @@ namespace Widgets
                 string[] parsed = response.Split('"');
                 this.txtWord.Text = parsed[parsed.Length - 2];
             }
-            else
-            {
-                this.Close();
-            }
         }
     }
 }

@@ -129,7 +129,7 @@ namespace Widgets
             pbCondition.Image = (Image)obj;
 
             // Set forecast icons
-            for (int i = 0; i < 6; i++)
+            for (int i = 1; i < 6; i++)
             {
                 obj = Resources.ResourceManager.GetObject(this.forecast[i].code);
                 DAYS[i].Image = (Image)obj;
